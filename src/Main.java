@@ -1,12 +1,19 @@
-import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        // Instantiates a SimpleMovie that automatically loads the entire data set
+        SimpleMovie bigGraph = new SimpleMovie("src/movie_data");
 
-        ArrayList<SimpleMovie> movies = MovieDatabaseBuilder.getMovieDB("src/movie_data");
-        for (SimpleMovie movie : movies) {
-            System.out.println(movie);
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.print("Enter an actor's name (or 'quit' to exit): ");
+            String name = sc.nextLine();
+            if (name.equalsIgnoreCase("quit")) {
+                break;
+            }
+            bigGraph.findMovieDistance(name);
         }
-        System.out.println("Number of movies: " + movies.size());
+        sc.close();
     }
 }
